@@ -6,6 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+require("./prod.js")(app);
+
 // Connect to MongoDB
 mongoose
   .connect("mongodb://localhost:27017/qahwablk", {
