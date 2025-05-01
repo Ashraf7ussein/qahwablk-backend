@@ -11,6 +11,7 @@ app.use(express.json());
 
 // Load MongoDB URI from environment variables
 const mongoURI = process.env.MONGO_URI;
+console.log("mongoURI", mongoURI);
 
 if (!mongoURI) {
   console.error("Error: MONGO_URI environment variable is not defined.");
