@@ -1,3 +1,6 @@
+// Load environment variables from .env file
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -6,14 +9,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-require("./prod.js")(app);
+// Load MongoDB URI from environment variables
+const mongoURI = process.env.MONGO_URI;
+
+if (!mongoURI) {
+  console.error("Error: MONGO_URI environment variable is not defined.");
+  process.exit(1); // Exit the process if MONGO_URI is not set
+}
 
 // Connect to MongoDB
 mongoose
-  .connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoURI, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
