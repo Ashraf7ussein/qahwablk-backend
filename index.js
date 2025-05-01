@@ -10,7 +10,7 @@ require("./prod.js")(app);
 
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/qahwablk", {
+  .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
