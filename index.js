@@ -65,7 +65,7 @@ router.post("/menu", async (req, res) => {
 router.get("/menu", async (req, res) => {
   try {
     const items = await MenuItem.find();
-    res.status(200).json(items);
+    res.send(items);
   } catch (err) {
     console.error("Error fetching menu items:", err);
     res.status(500).json({ message: "Error fetching menu items" });
